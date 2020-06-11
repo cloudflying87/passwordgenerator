@@ -1,6 +1,6 @@
 //Variables
 var generateBtn
-var password, passwordText
+var password = ""
 var passwordLength
 var upperCase, upperCaseChar 
 var lowercase, lowerCaseChar
@@ -10,15 +10,6 @@ var characterArray = ""
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword;
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-}
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", generatePass);
@@ -52,7 +43,6 @@ function userLower(){
   lowercase = confirm('Confirm you want lowercase letters.')
   if (lowercase){
     characterArray = characterArray + 'abcdefghijklmnopqrstuvwxyz'
-    
   }
 }
 
@@ -61,7 +51,6 @@ function userUpper(){
   upperCase = confirm('Confirm you want uppercase letters.')
   if (upperCase){
     characterArray = characterArray + 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    
   }
 }
 
@@ -79,27 +68,15 @@ function userSpec (){
     characterArray = characterArray + '~!@#$%^&*<>:'
   }
 }
-// Call random generators based on user responses for the length of the user specified password
+// Generate random password based on user selections
 
-// for (var i = 0; i < passwordLength; i++){
-
-  if (upperCase){
-   var character = upperCaseSel
+// Write password to the #password input
+function writePassword() {
+  for (var i = 0; i < passwordLength; i++){
+    password += characterArray.charAt(Math.ceil(Math.random() * characterArray.length))
   }
-  
-// }
-
-// Randomly generate uppercase letter
-function upperCaseFun(){
-  upperCaseSel = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  lowerCaseSel = 'abcdefghijklmnopqrstuvwxyz'
-  specialCharSel = '~!@#$%^&*<>:'
-  NumCharSel = '0123456789'
-  
-
-}
-// Randomly generate lowercase letters
-function lowerCaseFun(){
+  var passwordText = document.querySelector("#password");
+  passwordText.value = password;
 
 }
 
@@ -112,14 +89,3 @@ function conlog(){
   console.log(special);
   console.log(characterArray)
 }
-// function makeid(length) {
-//   var result           = '';
-//   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-//   var charactersLength = characters.length;
-//   for ( var i = 0; i < length; i++ ) {
-//     result += characters.charAt(Math.floor(Math.random() * charactersLength));
-//   }
-//   return result;
-
-
-// console.log(makeid(5))
