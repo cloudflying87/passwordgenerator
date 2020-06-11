@@ -2,10 +2,11 @@
 var generateBtn
 var password, passwordText
 var passwordLength
-var upperCase, upperCaseChar, upperCaseSel
-var lowercase, lowerCaseChar, lowerCaseSel
-var special, specialChar, specialCharSel
-var num, NumChar, NumCharSel
+var upperCase, upperCaseChar 
+var lowercase, lowerCaseChar
+var special, specialChar
+var num, NumChar
+var characterArray = ""
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
@@ -35,8 +36,8 @@ function generatePass (){
   userSpec()
   conlog()
 }
-
-  function getPassLength (){
+// Get the password length from the user
+function getPassLength (){
     passwordLength = parseInt(prompt("Choose password lenght between 8-128"))
     if (passwordLength<8){
       getPassLength()
@@ -46,34 +47,46 @@ function generatePass (){
     }
   }
 
-// Prompt user if they want lowercase letters
+// Prompt user if they want lowercase letters add to the array
 function userLower(){
   lowercase = confirm('Confirm you want lowercase letters.')
+  if (lowercase){
+    characterArray = characterArray + 'abcdefghijklmnopqrstuvwxyz'
+    
+  }
 }
 
 // Prompt user if they want uppercase letters
 function userUpper(){
   upperCase = confirm('Confirm you want uppercase letters.')
+  if (upperCase){
+    characterArray = characterArray + 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    
+  }
 }
+
 // Prompt user if they want numeric characters
 function userNumer(){
   num = confirm('Confirm you want numbers.')
+  if (num){
+    characterArray = characterArray + '0123456789'
+  }
 }
 // Prompt user if they want special characters
 function userSpec (){
   special = confirm('Confirm you want special characters.')
+  if (special){
+    characterArray = characterArray + '~!@#$%^&*<>:'
+  }
 }
 // Call random generators based on user responses for the length of the user specified password
 
 // for (var i = 0; i < passwordLength; i++){
-  upperCaseSel = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  lowerCaseSel = 'abcdefghijklmnopqrstuvwxyz'
-  specialCharSel = '~!@#$%^&*<>:'
-  NumCharSel = '0123456789'
+
   if (upperCase){
-   var char = upperCaseSel
+   var character = upperCaseSel
   }
-  console.log(char)
+  
 // }
 
 // Randomly generate uppercase letter
@@ -97,7 +110,7 @@ function conlog(){
   console.log(upperCase);
   console.log(num);
   console.log(special);
-
+  console.log(characterArray)
 }
 // function makeid(length) {
 //   var result           = '';
