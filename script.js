@@ -12,6 +12,7 @@ var characterArray = ""
 var generateBtn = document.querySelector("#generate");
 
 // Add event listener to generate button
+// generateBtn.addEventListener("click", window.location.reload(true));
 generateBtn.addEventListener("click", generatePass);
 generateBtn.addEventListener("click", writePassword);
 
@@ -20,6 +21,8 @@ generateBtn.addEventListener("click", writePassword);
 
 // Alert user for Password length and check that it is between 8-128
 function generatePass (){
+  characterArray = "", password = ""
+  console.log('Char ' + characterArray)
   getPassLength()
   userLower()
   userUpper()
@@ -27,6 +30,7 @@ function generatePass (){
   userSpec()
   conlog()
 }
+
 // Get the password length from the user
 function getPassLength (){
     passwordLength = parseInt(prompt("Choose password lenght between 8-128"))
@@ -68,8 +72,8 @@ function userSpec (){
     characterArray = characterArray + '~!@#$%^&*<>:'
   }
 }
-// Generate random password based on user selections
 
+// Generate random password based on user selections
 // Write password to the #password input
 function writePassword() {
   for (var i = 0; i < passwordLength; i++){
@@ -81,7 +85,6 @@ function writePassword() {
 }
 
 function conlog(){
-  console.log('Conlog')
   console.log(passwordLength)
   console.log(lowercase);
   console.log(upperCase);
