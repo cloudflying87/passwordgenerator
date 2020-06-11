@@ -22,7 +22,7 @@ generateBtn.addEventListener("click", writePassword);
 // Alert user for Password length and check that it is between 8-128
 function generatePass (){
   characterArray = "", password = ""
-  console.log('Char ' + characterArray)
+  console.clear()
   getPassLength()
   userLower()
   userUpper()
