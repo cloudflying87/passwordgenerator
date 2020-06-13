@@ -2,13 +2,23 @@
 var generateBtn
 var password = ""
 var passwordLength
-var upperCase, upperCaseChar 
-var lowercase, lowerCaseChar
-var special, specialChar
-var num, NumChar
+var upperCase, upperCaseChar, upperCaseCharArr
+var lowercase, lowerCaseChar, lowerCaseCharArr
+var special, specialChar, specialCharArr
+var num, NumChar, numCharArr
 var characterArray = ""
 
 lowerCaseChar = 'abcdefghijklmnopqrstuvwxyz'
+lowerCaseCharArr = lowerCaseChar.split("")
+
+upperCaseChar ='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+upperCaseCharArr = upperCaseChar.split("")
+
+specialChar = '0123456789'
+specialCharArr = specialChar.split("")
+
+numChar ='~!@#$%^&*<>:'
+numCharArr = numChar.split("")
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
@@ -47,7 +57,7 @@ function getPassLength (){
 function userLower(){
   lowercase = confirm('Confirm you want lowercase letters.')
   if (lowercase){
-    characterArray += 'abcdefghijklmnopqrstuvwxyz'
+    characterArray += lowerCaseChar
   }
 }
 
@@ -55,7 +65,7 @@ function userLower(){
 function userUpper(){
   upperCase = confirm('Confirm you want uppercase letters.')
   if (upperCase){
-    characterArray += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    characterArray += upperCaseChar
   }
 }
 
@@ -63,15 +73,20 @@ function userUpper(){
 function userNumer(){
   num = confirm('Confirm you want numbers.')
   if (num){
-    characterArray += '0123456789'
+    characterArray += specialChar
   }
 }
 // Prompt user if they want special characters
 function userSpec (){
   special = confirm('Confirm you want special characters.')
   if (special){
-    characterArray += '~!@#$%^&*<>:'
+    characterArray += numChar
   }
+}
+// Checking to make sure that 1 of every object is in the password
+function findCommonElements3(arr1, arr2) { 
+  return arr1.some(item => arr2.includes(item))
+  console.log("Find")
 }
 
 // Generate random password based on user selections
@@ -84,27 +99,44 @@ function writePassword() {
     for (var i = 0; i < passwordLength; i++){
       password += characterArray.charAt(Math.ceil(Math.random() * characterArray.length))
     }
+    console.log(password)
+// Using a function to make sure the password has all the requested characters
+    var passwordCheck = password.split("")
     
-// adding a loop to verify that the password has all the requested characters
-    // var passwordCheck = password.split("")
-    // console.log(passwordCheck.length)
-    //  if (lowercase) {
-    //   passwordCheck.forEach(checkChar);
-    //     console.log("Order")
-    //   };
-    
-
+     if (lowercase) {
+       if (!findCommonElements3(passwordCheck, lowerCaseCharArr)){
+        console.log("lowerCase - False");
+        password = ""
+        writePassword();
+       };
+      };
+    if(upperCase){
+      if (!findCommonElements3(passwordCheck, upperCaseCharArr)){
+        console.log("upperCase - False");
+        password = ""
+        writePassword();
+       };
+    }
+    if(num){
+      if (!findCommonElements3(passwordCheck, numCharArr)){
+        console.log("num - False");
+        password = ""
+        writePassword();
+       };
+    if(special){
+      if (!findCommonElements3(passwordCheck, specialCharArr)){
+        console.log("special - False");
+        password = ""
+        writePassword();
+       };
+    }
+    }
     var passwordText = document.querySelector("#password");
     passwordText.value = password;
 }
-var iter
 
-function checkChar(item, index, arr) {
-  for (iter = 0; iter < passwordCheck.length; iter++) {
-  }
-  arr[index] = item + index
-  
-}
+
+
 // function conlog(){
 //   console.log(passwordLength)
 //   console.log(lowercase);
