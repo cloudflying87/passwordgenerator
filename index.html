@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Password Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.26.0/slimselect.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.26.0/slimselect.min.css" rel="stylesheet"></link>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -13,8 +15,40 @@
         <h1>Password Generator</h1>
       </header>
       <div class="card">
-        <div class="card-header">
-          <h2>Generate a Password</h2>
+        <div class="card-header select1">
+          <h2 class="center">Generate a Password</h2>
+            <div class="selectMenu">
+              <h5>Enter a value between 8-128</h5>
+              <input type="text" class="selectMenu" id="passLength" value="12">
+            </div>
+            <div class="selectMenu"> 
+              <h5>Lower Case Characters</h5>
+              <select  id="lowerCaseCharacters">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+            </div>
+            <div class="selectMenu"> 
+              <h5>Upper Case Characters</h5>
+              <select  id="upperCaseCharacters">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+            </div>
+            <div class="selectMenu"> 
+              <h5>Special Characters</h5>
+              <select  id="specialCharacters">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+            </div>
+            <div class="selectMenu"> 
+              <h5>Numbers</h5>
+              <select  id="numbers">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+            </div>
         </div>
         <div class="card-body">
           <textarea

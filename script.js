@@ -14,19 +14,40 @@ lowerCaseCharArr = lowerCaseChar.split("")
 upperCaseChar ='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 upperCaseCharArr = upperCaseChar.split("")
 
-specialChar = '0123456789'
+specialChar ='~!@#$%^&*<>:'
 specialCharArr = specialChar.split("")
 
-numChar ='~!@#$%^&*<>:'
+numChar = '0123456789'
 numCharArr = numChar.split("")
 
+new SlimSelect({
+  select: '#lowerCaseCharacters',
+  showSearch: false
+})
+
+new SlimSelect({
+  select: '#upperCaseCharacters',
+  showSearch: false
+})
+
+new SlimSelect({
+  select: '#specialCharacters',
+  showSearch: false
+})
+
+new SlimSelect({
+  select: '#numbers',
+  showSearch: false
+})
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
+let checkInput = document.getElementById("passLength");
 
 // Add event listener to generate button
 // generateBtn.addEventListener("click", window.location.reload(true));
 generateBtn.addEventListener("click", generatePass);
 generateBtn.addEventListener("click", writePassword);
+checkInput.addEventListener("change", checkPass)
 
 // User clicks the button to generate password. 
 // Listening for the click
@@ -34,7 +55,7 @@ generateBtn.addEventListener("click", writePassword);
 // Alert user for Password length and check that it is between 8-128
 function generatePass (){
   characterArray = "", password = ""
-  console.clear()
+  // console.clear()
   getPassLength()
   userLower()
   userUpper()
@@ -43,50 +64,49 @@ function generatePass (){
 }
 
 // Get the password length from the user
+function checkPass (){
+  let passLength = document.getElementById("passLength").value
+  if (passLength<8){
+    document.getElementById("passLength").value = 8
+  }
+  else if (passLength >128){
+    document.getElementById("passLength").value = 128
+  }
+}
 function getPassLength (){
-    passwordLength = parseInt(prompt("Choose password length between 8-128."))
-    if (passwordLength<8){
-      getPassLength()
-    }
-    else if (passwordLength >128){
-      getPassLength()
-    }
+    passwordLength = parseInt(document.getElementById("passLength").value)
   }
 
 // Prompt user if they want lowercase letters add to the array
 function userLower(){
-  lowercase = confirm('Confirm you want lowercase letters.')
-  if (lowercase){
+  if (document.getElementById("lowerCaseCharacters").value == 'yes'){
     characterArray += lowerCaseChar
   }
 }
 
 // Prompt user if they want uppercase letters
 function userUpper(){
-  upperCase = confirm('Confirm you want uppercase letters.')
-  if (upperCase){
+  if (document.getElementById("upperCaseCharacters").value == 'yes'){
     characterArray += upperCaseChar
+  }
+}
+// Prompt user if they want special characters
+function userSpec (){
+  if (document.getElementById("specialCharacters").value == 'yes'){
+    characterArray += specialChar
   }
 }
 
 // Prompt user if they want numeric characters
 function userNumer(){
-  num = confirm('Confirm you want numbers.')
-  if (num){
-    characterArray += specialChar
-  }
-}
-// Prompt user if they want special characters
-function userSpec (){
-  special = confirm('Confirm you want special characters.')
-  if (special){
+  if (document.getElementById("numbers").value == 'yes'){
     characterArray += numChar
   }
 }
+
 // Checking to make sure that 1 of every object is in the password
 function findCommonElements3(arr1, arr2) { 
   return arr1.some(item => arr2.includes(item))
-  console.log("Find")
 }
 
 // Generate random password based on user selections
@@ -133,15 +153,7 @@ function writePassword() {
     }
     var passwordText = document.querySelector("#password");
     passwordText.value = password;
+    passwordText.select()
+    document.execCommand("copy")
+
 }
-
-
-
-// function conlog(){
-//   console.log(passwordLength)
-//   console.log(lowercase);
-//   console.log(upperCase);
-//   console.log(num);
-//   console.log(special);
-//   console.log(characterArray)
-// }
